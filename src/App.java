@@ -4,12 +4,11 @@ public class App {
     TennisPlayer p2 = new TennisPlayer("Søren", p1);
     p1.SetOpponent(p2);
 
-    for (int i = 0; i > 3; i++) {
-      p1.start();
-      p2.start();
-      p1.join();
-      p2.join();
-    }
+    p1.start();
+    p2.start();
+    p1.join();
+    p2.join();
+      
     CascadeThread ct1 = new CascadeThread("ct1");
     CascadeThread ct2 = new CascadeThread("ct2");
     CascadeThread ct3 = new CascadeThread("ct3");

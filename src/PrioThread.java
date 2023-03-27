@@ -8,6 +8,6 @@ public class PrioThread extends Thread {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    System.out.println(String.format("[thread with priority %s has exited]", priority));
+    System.out.println(String.format("[thread with priority %s has exited]", getPriority()));
   }
 }
