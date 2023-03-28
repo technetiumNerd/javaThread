@@ -1,4 +1,6 @@
 public class PrioThread extends Thread {
+  //MIN_PRIORITY = 1;
+  //MAX_PRIORITY = 10;
   public PrioThread(int priority) {
     setPriority(priority);
   }

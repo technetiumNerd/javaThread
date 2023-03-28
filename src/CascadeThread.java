@@ -12,6 +12,7 @@ public class CascadeThread extends Thread {
   public void SetNextCascadeThread(CascadeThread ct) {
     nextCascadeThread = ct;
   }
+  //Main method, waits for being pushed
   public void run() {
     while (waiting) {
       try {
@@ -21,19 +22,24 @@ public class CascadeThread extends Thread {
         e.printStackTrace();
       }
     }
+    //If next object exists:
     if (nextCascadeThread != null){
+      //Push next object
       nextCascadeThread.Push(name);
     }
+    //Else done
     else {
       System.out.println("Cascade complete");
     }
   }
+  //Public method to be pushed
   public void Push(String callingName) {
-    System.out.println(String.format("%s pushed  by %s", name, callingName));
+    System.out.println(String.format("[%s pushed  by %s]", name, callingName));
     Fall();
   }
+  //Private method to do the fall
   private void Fall() {
     waiting = false;
-    System.out.println(String.format("%s falling", name));
+    System.out.println(String.format("* %s falling *", name));
   }
 }

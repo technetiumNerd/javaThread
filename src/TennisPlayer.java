@@ -34,7 +34,9 @@ public class TennisPlayer extends Thread {
         catch (InterruptedException e) {
           e.printStackTrace();
         }
+        //I threw the ball, do I don't have it ...
         this.hasBall = false;
+        //Opponent receives the ball
         opponent.ReceiveBall();
       }
       else {
@@ -49,15 +51,17 @@ public class TennisPlayer extends Thread {
     }
   }
   private void ReceiveBall() {
-    //80% chance for accept
+    //80% chance of success
     if (Math.random() <= 0.8) {
       this.hasBall = true;
     }
+    //Get the ball or lose the round
     else {
       this.LoseRound();
     }
   }
   public void Play(){
+    hasBall = true;
     StartPlaying();
     opponent.StartPlaying();
   }
