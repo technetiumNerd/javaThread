@@ -21,9 +21,11 @@ public class TennisPlayer extends Thread {
     this.opponent = opponent;
   }
   public void run() {
-    Play();
+    StartPlaying();
     while (playing) {
       if (this.hasBall == true) {
+        //I returned the ball, so I don't have it ...
+        this.hasBall = false;
         System.out.println(String.format("[%s has hit the ball]", playerName));
         //vent 0-2 sekunder. Math.random() returnerer double. Resultatet castes til long for at accepteres af wait()
         //wait() kan throw InterruptedException, som ignoreres.
@@ -31,28 +33,19 @@ public class TennisPlayer extends Thread {
           long waitTime = (long)(Math.random() * 2000D);
           Thread.sleep(waitTime);
         }
-        catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-        //I threw the ball, do I don't have it ...
-        this.hasBall = false;
+        catch (InterruptedException e) {e.printStackTrace();}
         //Opponent receives the ball
         opponent.ReceiveBall();
       }
       else {
-        try {
-        Thread.sleep(100);
-        }
-        catch (InterruptedException e)
-        {
-          e.printStackTrace();
-        }
+        try {Thread.sleep(50);}
+        catch (InterruptedException e) {e.printStackTrace();}
       }
     }
   }
   private void ReceiveBall() {
     //80% chance of success
-    if (Math.random() <= 0.8) {
+    if (Math.random() < 0.8) {
       this.hasBall = true;
     }
     //Get the ball or lose the round
